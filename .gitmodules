@@ -1,0 +1,4 @@
+[submodule "openvr"]
+	path = openvr
+	url = https://github.com/ValveSoftware/openvr
+    branch = v1.4.18

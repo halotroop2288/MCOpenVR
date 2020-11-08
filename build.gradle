@@ -63,6 +63,7 @@ jar {
 	from compileJava
 	from processResources
 	from "LICENSE"
+	from "LICENSE.OPENVR"
 
 	from ("openvr/bin/linux64/libopenvr_api.so") {
 		into "linux-x86-64/"
