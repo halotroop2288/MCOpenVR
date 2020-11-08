@@ -28,7 +28,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.10.6+build.214",
-		"minecraft": "1.16.3"
+		"minecraft": "1.16.4"
 	},
 	"breaks": {
 		"sodium": "*"
