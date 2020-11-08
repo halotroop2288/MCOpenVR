@@ -1,0 +1,36 @@
+{
+	"schemaVersion": 1,
+	"id": "mcopenvr",
+	"version": "${version}",
+	"name": "MCOpenVR",
+	"description": "A helper library for implementing OpenVR in Minecraft\nAlso see VRCraft, and Vivecraft.",
+	"authors": [
+		"halotroop2288",
+		"jrbudda"
+	],
+	"contact": {
+		"homepage": "https://www.halotroop.com/posts/mcopenvr",
+		"issues": "https://github.com/halotroop2288/MCOpenVR/issues"
+	},
+	"license": "GPLv3",
+	"icon": "openvr.jpg",
+	"environment": "client",
+	"custom": {
+		"modmenu:api": true
+	},
+	"entrypoints": {
+		"gfh:prePreLaunch": [
+			"com.halotroop.mcopenvr.client.MCOpenVRPrePreLaunch"
+		]
+	},
+	"mixins": [
+		"mcopenvr.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.10.6+build.214",
+		"minecraft": "1.16.3"
+	},
+	"breaks": {
+		"sodium": "*"
+	}
+}
