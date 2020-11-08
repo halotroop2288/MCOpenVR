@@ -6,7 +6,7 @@ A helper library for implementing Steam's OpenVR API in Minecraft.
 ## Usage
 Use JITPack to get the latest version of this with Gradle.
 
-If no version is available, use the latest commit hash in place of <version>.
+If no version is available, use the latest commit hash in place of `<version>`.
 
 ![GitHub All Releases](https://img.shields.io/github/downloads/halotroop2288/MCOpenVR/total)
 
