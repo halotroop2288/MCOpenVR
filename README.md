@@ -23,6 +23,13 @@ dependencies {
 }
 ```
 
+After cloning the repo, open it in your favourite IDE, generate runs,
+and add this to your VM arguments:
+
+```
+-Djna.library.path=PATH\TO\MCOPENVR\WORKSPACE\openvr\bin\win64
+```
+
 ## Cloning this repo
 Clone this repository recursively to download the included version of OpenVR.
 It may take quite some time to download, please be patient. The library is required.
