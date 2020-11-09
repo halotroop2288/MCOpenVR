@@ -45,8 +45,8 @@ public final class OpenVRInput {
 	}
 
 	public static void triggerHapticPulse(ControllerType controller, float durationSeconds, float frequency, float amplitude, float delaySeconds) {
-		if (MCOpenVR.settings.vrDisableControllerInput || !inputInitialized) return;
-		if (MCOpenVR.settings.vrReverseHands) {
+		if (MCOpenVR.modConfig.disableControllerInput || !inputInitialized) return;
+		if (MCOpenVR.modConfig.reverseHands) {
 			if (controller == ControllerType.RIGHT) controller = ControllerType.LEFT;
 			else controller = ControllerType.RIGHT;
 		}

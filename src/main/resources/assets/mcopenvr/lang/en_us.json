@@ -1,0 +1,9 @@
+{
+	"text.autoconfig.MCOpenVR.title": "Minecraft OpenVR",
+	"text.autoconfig.MCOpenVR.option.vrDisableControllerInput": "Disable Controller Input",
+	"text.autoconfig.MCOpenVR.option.vrReverseHands": "Reverse Hands",
+	"text.autoconfig.MCOpenVR.option.forceHardwareDetection": "Force Hardware Detection",
+	"text.autoconfig.MCOpenVR.category.default": "This Shouldn't Appear",
+	"text.autoconfig.MCOpenVR.category.control": "Controls",
+	"text.autoconfig.MCOpenVR.category.overrides": "Overrides"
+}

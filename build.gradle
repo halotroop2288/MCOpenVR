@@ -12,9 +12,14 @@ version = "${mod_version}+openVR${openvr_version}-${minecraft_version}"
 group = maven_group
 
 repositories {
+	jcenter()
 	maven {
 		name "HalfOf2"
 		url "https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/"
+	}
+	maven {
+		name "JITPack"
+		url "https://jitpack.io/"
 	}
 }
 
@@ -23,12 +28,18 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
 	modRuntime "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modRuntime "io.github.prospector:modmenu:${project.modmenu_version}" exclude module: 'fabric-api'
+	modApi "io.github.prospector:modmenu:${project.modmenu_version}" exclude group: "net.fabricmc.fabric-api"
+
+	// Makes the game load faster while debugging at the cost of never being able to upgrade a world between MC versions
+	modRuntime "com.github.SuperCoder7979:databreaker:715b589"
+
+	// To manage the configuration
+	include modApi ("me.shedaniel.cloth:config-2:4.8.3") exclude group: "net.fabricmc.fabric-api"
+	include modApi ("me.sargunvohra.mcmods:autoconfig1u:3.3.1") exclude group: "net.fabricmc.fabric-api"
 
 	// To load natives at the right time
-	include(modApi("net.devtech:grossfabrichacks:6.1"))
+	include modApi ("net.devtech:grossfabrichacks:6.1")
 }
 
 processResources {

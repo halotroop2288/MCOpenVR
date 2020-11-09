@@ -1,6 +1,6 @@
 package com.halotroop.mcopenvr.client.provider;
 
-import com.halotroop.mcopenvr.client.MinecraftOpenVrConfig;
+import com.halotroop.mcopenvr.client.MCOpenVRConfig;
 import com.halotroop.mcopenvr.client.api.Vec3History;
 import com.halotroop.mcopenvr.client.control.ControllerType;
 import com.halotroop.mcopenvr.client.control.HapticScheduler;
@@ -8,6 +8,8 @@ import com.halotroop.mcopenvr.client.control.TrackedController;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.LongByReference;
 import jopenvr.*;
+import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
+import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.util.math.Vector3d;
 import net.minecraft.util.math.Matrix4f;
@@ -28,7 +30,7 @@ public final class MCOpenVR implements ClientModInitializer {
 	private static final Matrix4f hmdPose = new Matrix4f();
 	private static final IntByReference hmdErrorStore = new IntByReference();
 	private static final boolean TPose = false;
-	public static MinecraftOpenVrConfig settings;
+	public static MCOpenVRConfig modConfig;
 	public static VR_IVRSystem_FnTable vrSystem;
 	public static Vec3History hmdHistory = new Vec3History();
 	public static Vec3History hmdPivotHistory = new Vec3History();
@@ -197,7 +199,7 @@ public final class MCOpenVR implements ClientModInitializer {
 	}
 
 	public static HardwareType getHardwareType() {
-		return settings.forceHardwareDetection > 0 ? HardwareType.values()[settings.forceHardwareDetection - 1] : detectedHardware;
+		return modConfig.forceHardwareDetection > 0 ? HardwareType.values()[modConfig.forceHardwareDetection - 1] : detectedHardware;
 	}
 
 	static int getError() {
@@ -214,5 +216,7 @@ public final class MCOpenVR implements ClientModInitializer {
 			LOGGER.info("Creating MCOpenVR instance.");
 			instance = new MCOpenVR();
 		}
+		AutoConfig.register(MCOpenVRConfig.class, JanksonConfigSerializer::new);
+		modConfig = AutoConfig.getConfigHolder(MCOpenVRConfig.class).getConfig();
 	}
 }
