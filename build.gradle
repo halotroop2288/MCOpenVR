@@ -75,16 +75,6 @@ jar {
 }
 
 publishing {
-	repositories {
-		maven { // TODO couldn't find a safe way to provide a token so I'll wait until I add GH Actions support.
-			name = "GitHubPackages"
-			url = uri("https://maven.pkg.github.com/halotroop2288/MCOpenVR")
-			credentials {
-				username = project.findProperty("gpr.user") as String ?: System.getenv("USERNAME")
-				password = project.findProperty("gpr.key") as String ?: System.getenv("TOKEN")
-			}
-		}
-	}
 	publications {
 		mavenJava(MavenPublication) {
 			// add all the jars that should be included when publishing to maven
@@ -94,9 +84,6 @@ publishing {
 			artifact(sourcesJar) {
 				builtBy remapSourcesJar
 			}
-		}
-		gpr(MavenPublication) {
-			from(components.java)
 		}
 	}
 }
