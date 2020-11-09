@@ -24,6 +24,9 @@
 	"entrypoints": {
 		"gfh:prePreLaunch": [
 			"com.halotroop.mcopenvr.client.NativeLoaderEntrypoint"
+		],
+		"client": [
+			"com.halotroop.mcopenvr.client.provider.MCOpenVR"
 		]
 	},
 	"mixins": [

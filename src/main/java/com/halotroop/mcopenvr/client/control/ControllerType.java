@@ -1,12 +1,12 @@
 package com.halotroop.mcopenvr.client.control;
 
-import com.halotroop.mcopenvr.client.provider.MinecraftOpenVR;
+import com.halotroop.mcopenvr.client.provider.OpenVRInput;
 
 public enum ControllerType {
 	RIGHT,
 	LEFT;
-	
+
 	public TrackedController getController() {
-		return MinecraftOpenVR.controllers[this.ordinal()];
+		return OpenVRInput.controllers[this.ordinal()];
 	}
 }

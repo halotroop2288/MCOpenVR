@@ -8,20 +8,20 @@ import java.util.ListIterator;
 public class Vec3History {
 	private final int _capacity = 90 * 5;
 	private final LinkedList<Entry> _data = new LinkedList<>();
-	
+
 	public void add(Vec3d in) {
 		_data.add(new Entry(in));
 		if (_data.size() > _capacity) _data.removeFirst();
 	}
-	
+
 	public void clear() {
 		_data.clear();
 	}
-	
+
 	public Vec3d latest() {
 		return _data.getLast().data;
 	}
-	
+
 	/**
 	 * Get the total integrated device translation for the specified time period. Return value is in meters.
 	 */
@@ -44,7 +44,7 @@ public class Vec3History {
 		}
 		return sum;
 	}
-	
+
 	/**
 	 * Get the vector representing the difference in position from now to @seconds ago.
 	 */
@@ -54,7 +54,7 @@ public class Vec3History {
 		Entry last = null;
 		Entry thing = null;
 		double sum = 0;
-		
+
 		while (it.hasPrevious()) {
 			Entry i = it.previous();
 			if (now - i.ts > seconds * 1000) break;
@@ -67,7 +67,7 @@ public class Vec3History {
 		if (last == null || thing == null) return new Vec3d(0, 0, 0);
 		return last.data.subtract(thing.data);
 	}
-	
+
 	/**
 	 * Get the average scalar speed of the device over the specified length of time. Returns m/s.
 	 */
@@ -90,10 +90,10 @@ public class Vec3History {
 			out = out + ddelta / tdelta;
 		}
 		if (j == 0) return out;
-		
+
 		return out / j;
 	}
-	
+
 	/**
 	 * Get the average room position for the last @seconds.
 	 */
@@ -111,11 +111,11 @@ public class Vec3History {
 		if (j == 0) return out;
 		return out.multiply(1.0 / j);
 	}
-	
+
 	private static class Entry {
 		public long ts;
 		public Vec3d data;
-		
+
 		public Entry(Vec3d in) {
 			this.ts = System.currentTimeMillis();
 			this.data = in;
