@@ -1,6 +1,6 @@
 package com.halotroop.mcopenvr.client.control;
 
-import com.halotroop.mcopenvr.client.provider.MCOpenVR;
+import com.halotroop.mcopenvr.client.provider.MinecraftOpenVR;
 
 public class TrackedController {
 	protected final ControllerType type;
@@ -10,7 +10,7 @@ public class TrackedController {
 	}
 	
 	public int getDeviceIndex() {
-		return MCOpenVR.controllerDeviceIndex[type.ordinal()];
+		return MinecraftOpenVR.controllerDeviceIndex[type.ordinal()];
 	}
 	
 	public ControllerType getType() {
@@ -18,10 +18,10 @@ public class TrackedController {
 	}
 	
 	public boolean isTracking() {
-		return MCOpenVR.isControllerTracking(type);
+		return MinecraftOpenVR.isControllerTracking(type);
 	}
 	
 	public void triggerHapticPulse(float durationSeconds, float frequency, float amplitude) {
-		MCOpenVR.triggerHapticPulse(this.type, durationSeconds, frequency, amplitude);
+		MinecraftOpenVR.triggerHapticPulse(this.type, durationSeconds, frequency, amplitude);
 	}
 }

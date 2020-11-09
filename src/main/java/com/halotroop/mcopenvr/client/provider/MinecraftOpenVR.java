@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.nio.IntBuffer;
 
-public class MCOpenVR {
+public class MinecraftOpenVR {
 	public static final Logger LOGGER = LogManager.getLogger("MCOpenVR");
 	public static final Matrix4f hmdRotation = new Matrix4f();
 	final static VRTextureBounds_t texBounds = new VRTextureBounds_t();
@@ -27,6 +27,9 @@ public class MCOpenVR {
 	private static final Matrix4f hmdPose = new Matrix4f();
 	private static final int RIGHT_CONTROLLER = 0;
 	private static final int LEFT_CONTROLLER = 1;
+	private static final IntByReference hmdErrorStore = new IntByReference();
+	private static final boolean TPose = false;
+	private static final boolean[] controllerTracking = new boolean[3];
 	public static VRSettings settings;
 	public static VR_IVRSystem_FnTable vrSystem;
 	public static VR_IVROCSystem_FnTable vrOpenComposite;
@@ -55,7 +58,6 @@ public class MCOpenVR {
 	static boolean initSuccess = false, flipEyes = false;
 	private static boolean initialized;
 	private static boolean inputInitialized;
-	private static final IntByReference hmdErrorStore = new IntByReference();
 	private static IntBuffer hmdErrorStoreBuf;
 	private static TrackedDevicePose_t.ByReference hmdTrackedDevicePoseReference;
 	private static TrackedDevicePose_t[] hmdTrackedDevicePoses;
@@ -65,7 +67,6 @@ public class MCOpenVR {
 	private static float vsyncToPhotons;
 	private static double timePerFrame, frameCountRun;
 	private static long frameCount;
-	private static final boolean TPose = false;
 	private static HapticScheduler hapticScheduler;
 	private static InputPoseActionData_t.ByReference poseData;
 	private static InputOriginInfo_t.ByReference originInfo;
@@ -74,11 +75,13 @@ public class MCOpenVR {
 	private static long leftHapticHandle;
 	private static long rightHapticHandle;
 	private static long externalCameraPoseHandle;
-	private static final boolean[] controllerTracking = new boolean[3];
-	/** Do not make this public and reference it! Call the {@link #getHardwareType()} method instead! */
+	/**
+	 * Do not make this public and reference it! Call the {@link #getHardwareType()} method instead!
+	 */
 	private static HardwareType detectedHardware = HardwareType.VIVE;
 	private final LongByReference oHandle = new LongByReference();
-	public MCOpenVR() {
+	
+	public MinecraftOpenVR() {
 		for (int i = 0; i < 3; i++) {
 			aimSource[i] = new Vector3d(0, 0, 0);
 			controllerPose[i] = new Matrix4f();
@@ -97,7 +100,7 @@ public class MCOpenVR {
 		originInfo.setAutoWrite(false);
 		originInfo.setAutoSynch(false);
 	}
-
+	
 	public static boolean init() {
 		if (initialized) return true;
 		if (tried) return false;

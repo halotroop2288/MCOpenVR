@@ -12,7 +12,7 @@ public enum HardwareType {
 	WINDOWSMR(true, true, "WindowsMR");
 	
 	private static final Map<String, HardwareType> map = new HashMap<>();
-
+	
 	static {
 		for (HardwareType hw : values()) {
 			for (String str : hw.manufacturers) {
@@ -21,7 +21,7 @@ public enum HardwareType {
 			}
 		}
 	}
-
+	
 	public final List<String> manufacturers;
 	public final boolean hasTouchpad;
 	public final boolean hasStick;

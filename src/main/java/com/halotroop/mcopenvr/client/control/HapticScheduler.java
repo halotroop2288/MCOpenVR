@@ -1,6 +1,6 @@
 package com.halotroop.mcopenvr.client.control;
 
-import com.halotroop.mcopenvr.client.provider.MCOpenVR;
+import com.halotroop.mcopenvr.client.provider.MinecraftOpenVR;
 import jopenvr.JOpenVRLibrary;
 
 import java.util.concurrent.Executors;
@@ -15,9 +15,9 @@ public class HapticScheduler {
 	}
 	
 	private void triggerHapticPulse(ControllerType controller, float durationSeconds, float frequency, float amplitude) {
-		int error = MCOpenVR.vrInput.TriggerHapticVibrationAction.apply(MCOpenVR.getHapticHandle(controller), 0, durationSeconds, frequency, amplitude, JOpenVRLibrary.k_ulInvalidInputValueHandle);
+		int error = MinecraftOpenVR.vrInput.TriggerHapticVibrationAction.apply(MinecraftOpenVR.getHapticHandle(controller), 0, durationSeconds, frequency, amplitude, JOpenVRLibrary.k_ulInvalidInputValueHandle);
 		if (error != 0)
-			System.out.println("Error triggering haptic: " + MCOpenVR.getInputError(error));
+			System.out.println("Error triggering haptic: " + MinecraftOpenVR.getInputError(error));
 	}
 	
 	public void queueHapticPulse(ControllerType controller, float durationSeconds, float frequency, float amplitude, float delaySeconds) {

@@ -7,8 +7,8 @@ import java.util.ListIterator;
 
 public class Vec3History {
 	private final int _capacity = 90 * 5;
-	private final LinkedList<Entry> _data = new LinkedList<Entry>();
-
+	private final LinkedList<Entry> _data = new LinkedList<>();
+	
 	public void add(Vec3d in) {
 		_data.add(new Entry(in));
 		if (_data.size() > _capacity) _data.removeFirst();
