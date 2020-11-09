@@ -10,7 +10,10 @@
 	],
 	"contact": {
 		"homepage": "https://www.halotroop.com/posts/mcopenvr",
-		"issues": "https://github.com/halotroop2288/MCOpenVR/issues"
+		"sources": "https://github.com/halotroop2288/MCOpenVR",
+		"issues": "https://github.com/halotroop2288/MCOpenVR/issues",
+		"irc": "https://halotroop.com/discord.html",
+		"email": "carolinejoybell@gmail.com"
 	},
 	"license": "LGPLv3",
 	"icon": "openvr.jpg",
@@ -30,7 +33,7 @@
 		"fabricloader": ">=0.10.6+build.214",
 		"minecraft": "1.16.4"
 	},
-	"breaks": {
-		"sodium": "*"
+	"recommends": {
+		"vrcraft": "*"
 	}
 }
