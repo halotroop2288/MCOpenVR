@@ -58,6 +58,42 @@ public final class OpenVRInput {
 		triggerHapticPulse(controller, durationSeconds, frequency, amplitude, 0);
 	}
 
+	/**
+	 * @deprecated
+	 * Through careful analysis of the haptics in the legacy API (read: I put the controller to
+	 * my ear, listened to the vibration, and reproduced the frequency in Audacity), I have determined
+	 * that the old haptics used 160Hz. So, these parameters will match the "feel" of the old haptics.
+	 * @param controller which controller to vibrate
+	 */
+	@Deprecated
+	public static void triggerHapticPulse(ControllerType controller, int strength) {
+		if (strength < 1) return;
+		triggerHapticPulse(controller, strength / 1000000f, 160, 1);
+	}
+
+	/**
+	 * Sends a haptic pulse to both controllers.
+	 * @param strength Strength of vibration
+	 */
+	public static void triggerHapticPulse(int strength) {
+		triggerHapticPulse(ControllerType.RIGHT, strength);
+		triggerHapticPulse(ControllerType.LEFT, strength);
+	}
+
+	/**
+	 * Sends a haptic pulse to one or both controllers.
+	 *
+	 * @param controller Index of controller to vibrate. <br>
+	 *                   If a number greater than 3 is supplied, both controllers will vibrate.
+	 * @param strength Strength of vibration
+	 */
+	@Deprecated
+	public static void triggerHapticPulse(int controller, int strength) {
+		if (controller > -1 && controller < ControllerType.values().length) {
+			triggerHapticPulse(ControllerType.values()[controller], strength);
+		} else triggerHapticPulse(strength);
+	}
+
 	public static long getHapticHandle(ControllerType hand) {
 		return hand == ControllerType.RIGHT ? rightHapticHandle : leftHapticHandle;
 	}
