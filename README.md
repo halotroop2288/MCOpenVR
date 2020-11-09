@@ -8,7 +8,7 @@ Use JITPack to get the latest version of this with Gradle.
 
 If no version is available, use the latest commit hash in place of `<version>`.
 
-![GitHub All Releases](https://img.shields.io/github/downloads/halotroop2288/MCOpenVR/total)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/halotroop2288/MCOpenVR?sort=semver)
 
 ```groovy
 repositories {
