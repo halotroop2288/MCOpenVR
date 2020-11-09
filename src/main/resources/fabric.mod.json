@@ -12,7 +12,7 @@
 		"homepage": "https://www.halotroop.com/posts/mcopenvr",
 		"issues": "https://github.com/halotroop2288/MCOpenVR/issues"
 	},
-	"license": "GPLv3",
+	"license": "LGPLv3",
 	"icon": "openvr.jpg",
 	"environment": "client",
 	"custom": {

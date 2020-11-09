@@ -58,7 +58,7 @@ and add this to your VM arguments:
 
 # Licenses
 ### Mod
-This mod and its source code are released under the MIT licence. <br/>
+This mod and its source code are released under version 3 of the Lesser GNU Public Licence. <br/>
 For more information, see [LICENSE](https://github.com/halotroop2288/MCOpenVR/blob/trunk/LICENSE).
 
 ### OpenVR
