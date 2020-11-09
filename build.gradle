@@ -6,9 +6,22 @@ plugins {
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-archivesBaseName = project.archives_base_name
-version = "${project.mod_version}+openVR${project.openvr_version}-${project.minecraft_version}"
-group = project.maven_group
+
+def minecraft_version  = "1.16.4"
+def yarn_mappings      = "1.16.4+build.6"
+def loader_version     = "0.10.6+build.214"
+
+def mod_version        = "0.0.3"
+def maven_group        = "com.halotroop"
+def archives_base_name = "mcopenvr"
+
+def fabric_version     = "0.24.3+build.414-1.16"
+def openvr_version     = "1.4.18"
+def modmenu_version    = "1.14.6+build.31"
+
+archivesBaseName = archives_base_name
+version = "${mod_version}+openVR${openvr_version}-${minecraft_version}"
+group = maven_group
 
 repositories {
 	maven {
@@ -19,23 +32,23 @@ repositories {
 
 dependencies {
 	//to change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	minecraft "com.mojang:minecraft:${minecraft_version}"
+	mappings "net.fabricmc:yarn:${yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${loader_version}"
 
-	modRuntime "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modRuntime "io.github.prospector:modmenu:${project.modmenu_version}" exclude module: 'fabric-api'
+	modRuntime "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+	modRuntime "io.github.prospector:modmenu:${modmenu_version}" exclude module: 'fabric-api'
 
 	// To load natives at the right time
 	include(modApi("net.devtech:grossfabrichacks:6.1"))
 }
 
 processResources {
-	inputs.property "version", project.version
+	inputs.property "version", version
 
 	from(sourceSets.main.resources.srcDirs) {
 		include "fabric.mod.json"
-		expand "version": project.version
+		expand "version": version
 	}
 
 	from(sourceSets.main.resources.srcDirs) {
@@ -76,6 +89,16 @@ jar {
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
+			repositories {
+				maven {
+					name = "Github"
+					url = uri("https://maven.pkg.github.com/halotroop2288/MCOpenVR")
+					credentials {
+						username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+						password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+					}
+				}
+			}
 			// add all the jars that should be included when publishing to maven
 			artifact(remapJar) {
 				builtBy remapJar
