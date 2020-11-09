@@ -1,6 +1,6 @@
 package com.halotroop.mcopenvr.client.control;
 
-import com.halotroop.mcopenvr.client.api.MCOpenVR;
+import com.halotroop.mcopenvr.client.provider.MCOpenVR;
 
 public enum ControllerType {
 	RIGHT,

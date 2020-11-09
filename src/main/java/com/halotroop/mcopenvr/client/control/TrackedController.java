@@ -1,6 +1,6 @@
 package com.halotroop.mcopenvr.client.control;
 
-import com.halotroop.mcopenvr.client.api.MCOpenVR;
+import com.halotroop.mcopenvr.client.provider.MCOpenVR;
 
 public class TrackedController {
 	protected final ControllerType type;
@@ -20,7 +20,7 @@ public class TrackedController {
 	public boolean isTracking() {
 		return MCOpenVR.isControllerTracking(type);
 	}
-
+	
 	public void triggerHapticPulse(float durationSeconds, float frequency, float amplitude) {
 		MCOpenVR.triggerHapticPulse(this.type, durationSeconds, frequency, amplitude);
 	}

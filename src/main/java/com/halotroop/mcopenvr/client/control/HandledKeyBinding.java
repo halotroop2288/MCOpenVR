@@ -6,8 +6,8 @@ import net.minecraft.client.options.KeyBinding;
 import java.util.Arrays;
 
 public class HandledKeyBinding extends KeyBinding {
-	private boolean[] pressed = new boolean[ControllerType.values().length];
-	private int[] pressTime = new int[ControllerType.values().length];
+	private final boolean[] pressed = new boolean[ControllerType.values().length];
+	private final int[] pressTime = new int[ControllerType.values().length];
 	
 	public HandledKeyBinding(String description, int keyCode, String category) {
 		super(description, keyCode, category);

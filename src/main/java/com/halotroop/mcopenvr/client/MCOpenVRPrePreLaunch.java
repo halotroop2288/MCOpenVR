@@ -1,6 +1,6 @@
 package com.halotroop.mcopenvr.client;
 
-import com.halotroop.mcopenvr.client.api.MCOpenVR;
+import com.halotroop.mcopenvr.client.provider.MCOpenVR;
 import net.devtech.grossfabrichacks.entrypoints.PrePreLaunch;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

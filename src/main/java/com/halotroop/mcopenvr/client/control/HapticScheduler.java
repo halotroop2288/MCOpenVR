@@ -1,6 +1,6 @@
 package com.halotroop.mcopenvr.client.control;
 
-import com.halotroop.mcopenvr.client.api.MCOpenVR;
+import com.halotroop.mcopenvr.client.provider.MCOpenVR;
 import jopenvr.JOpenVRLibrary;
 
 import java.util.concurrent.Executors;
@@ -8,7 +8,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class HapticScheduler {
-	private ScheduledExecutorService executor;
+	private final ScheduledExecutorService executor;
 	
 	public HapticScheduler() {
 		executor = Executors.newSingleThreadScheduledExecutor();
@@ -21,6 +21,6 @@ public class HapticScheduler {
 	}
 	
 	public void queueHapticPulse(ControllerType controller, float durationSeconds, float frequency, float amplitude, float delaySeconds) {
-		executor.schedule(() -> triggerHapticPulse(controller, durationSeconds, frequency, amplitude), (long)(delaySeconds * 1000000), TimeUnit.MICROSECONDS);
+		executor.schedule(() -> triggerHapticPulse(controller, durationSeconds, frequency, amplitude), (long) (delaySeconds * 1000000), TimeUnit.MICROSECONDS);
 	}
 }

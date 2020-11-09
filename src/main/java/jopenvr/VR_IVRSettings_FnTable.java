@@ -23,6 +23,7 @@ public class VR_IVRSettings_FnTable extends Structure {
 	public VR_IVRSettings_FnTable.GetString_callback GetString;
 	public VR_IVRSettings_FnTable.RemoveSection_callback RemoveSection;
 	public VR_IVRSettings_FnTable.RemoveKeyInSection_callback RemoveKeyInSection;
+	
 	public interface GetSettingsErrorNameFromEnum_callback extends Callback {
 		Pointer apply(int eError);
 	};
