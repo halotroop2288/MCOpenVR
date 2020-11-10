@@ -1,6 +1,5 @@
 package com.halotroop.mcopenvr.client.control;
 
-import com.halotroop.mcopenvr.client.provider.McOpenVr;
 import com.halotroop.mcopenvr.client.provider.OpenVrInput;
 
 public class TrackedController {
@@ -8,10 +7,6 @@ public class TrackedController {
 
 	public TrackedController(ControllerType type) {
 		this.type = type;
-	}
-
-	public int getDeviceIndex() {
-		return McOpenVr.controllerDeviceIndex[type.ordinal()];
 	}
 
 	public ControllerType getType() {

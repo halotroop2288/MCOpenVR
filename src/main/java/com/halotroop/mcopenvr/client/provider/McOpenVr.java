@@ -21,7 +21,6 @@ import java.nio.IntBuffer;
 // Checkstyle doesn't like abbreviations.
 public final class McOpenVr implements ClientModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger("MCOpenVR");
-	public static McOpenVr instance;
 	public static final Matrix4f hmdRotation = new Matrix4f();
 	final static VRTextureBounds_t texBounds = new VRTextureBounds_t();
 	final static Texture_t texType0 = new Texture_t();
@@ -30,18 +29,15 @@ public final class McOpenVr implements ClientModInitializer {
 	private static final Matrix4f hmdPose = new Matrix4f();
 	private static final IntByReference hmdErrorStore = new IntByReference();
 	private static final boolean TPose = false;
+	public static McOpenVr instance;
 	public static McOpenVrConfig modConfig;
 	public static VR_IVRSystem_FnTable vrSystem;
 	public static Vec3History hmdHistory = new Vec3History();
 	public static Vec3History hmdPivotHistory = new Vec3History();
-	public static Vec3History[] controllerHistory = new Vec3History[]{new Vec3History(), new Vec3History()};
-	public static Vec3History[] controllerForwardHistory = new Vec3History[]{new Vec3History(), new Vec3History()};
-	public static Vec3History[] controllerUpHistory = new Vec3History[]{new Vec3History(), new Vec3History()};
 	public static Vector3d[] aimSource = new Vector3d[3];
 	public static Matrix4f[] controllerPose = new Matrix4f[3];
 	public static Matrix4f[] controllerRotation = new Matrix4f[3];
 	public static Matrix4f[] handRotation = new Matrix4f[3];
-	public static int[] controllerDeviceIndex = new int[3];
 	protected static boolean tried = false;
 	static String initStatus;
 	static VR_IVROverlay_FnTable vrOverlay;
@@ -68,13 +64,14 @@ public final class McOpenVr implements ClientModInitializer {
 	 */
 	private static HardwareType detectedHardware = HardwareType.VIVE;
 	private final LongByReference oHandle = new LongByReference();
+
 	private McOpenVr() {
 		for (int i = 0; i < 3; i++) {
 			aimSource[i] = new Vector3d(0, 0, 0);
 			controllerPose[i] = new Matrix4f();
 			controllerRotation[i] = new Matrix4f();
 			handRotation[i] = new Matrix4f();
-			controllerDeviceIndex[i] = -1;
+			OpenVrInput.controllerDeviceIndex[i] = -1;
 		}
 
 		poseData = new InputPoseActionData_t.ByReference();
@@ -130,7 +127,7 @@ public final class McOpenVr implements ClientModInitializer {
 			return false;
 		}
 
-		if (OpenVrInput.instance == null) {
+		if (OpenVrInput.get() == null) {
 			LOGGER.warn("Controller input not available.");
 		}
 
@@ -212,11 +209,15 @@ public final class McOpenVr implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
+		AutoConfig.register(McOpenVrConfig.class, JanksonConfigSerializer::new);
+		modConfig = AutoConfig.getConfigHolder(McOpenVrConfig.class).getConfig();
+		modConfig.controlSettings.firstRun = false;
+
 		if (initialized) {
 			LOGGER.info("Creating MCOpenVR instance.");
 			instance = new McOpenVr();
 		}
-		AutoConfig.register(McOpenVrConfig.class, JanksonConfigSerializer::new);
-		modConfig = AutoConfig.getConfigHolder(McOpenVrConfig.class).getConfig();
+
+//		initInputAndApplication(); // Out of scope
 	}
 }
