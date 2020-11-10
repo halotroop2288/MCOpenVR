@@ -1,6 +1,6 @@
 package com.halotroop.mcopenvr.client.provider;
 
-import com.halotroop.mcopenvr.client.MCOpenVRConfig;
+import com.halotroop.mcopenvr.client.McOpenVrConfig;
 import com.halotroop.mcopenvr.client.api.Vec3History;
 import com.halotroop.mcopenvr.client.control.ControllerType;
 import com.halotroop.mcopenvr.client.control.HapticScheduler;
@@ -19,9 +19,9 @@ import org.apache.logging.log4j.Logger;
 import java.nio.IntBuffer;
 
 // Checkstyle doesn't like abbreviations.
-public final class MCOpenVR implements ClientModInitializer {
+public final class McOpenVr implements ClientModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger("MCOpenVR");
-	public static MCOpenVR instance;
+	public static McOpenVr instance;
 	public static final Matrix4f hmdRotation = new Matrix4f();
 	final static VRTextureBounds_t texBounds = new VRTextureBounds_t();
 	final static Texture_t texType0 = new Texture_t();
@@ -30,7 +30,7 @@ public final class MCOpenVR implements ClientModInitializer {
 	private static final Matrix4f hmdPose = new Matrix4f();
 	private static final IntByReference hmdErrorStore = new IntByReference();
 	private static final boolean TPose = false;
-	public static MCOpenVRConfig modConfig;
+	public static McOpenVrConfig modConfig;
 	public static VR_IVRSystem_FnTable vrSystem;
 	public static Vec3History hmdHistory = new Vec3History();
 	public static Vec3History hmdPivotHistory = new Vec3History();
@@ -68,7 +68,7 @@ public final class MCOpenVR implements ClientModInitializer {
 	 */
 	private static HardwareType detectedHardware = HardwareType.VIVE;
 	private final LongByReference oHandle = new LongByReference();
-	private MCOpenVR() {
+	private McOpenVr() {
 		for (int i = 0; i < 3; i++) {
 			aimSource[i] = new Vector3d(0, 0, 0);
 			controllerPose[i] = new Matrix4f();
@@ -97,11 +97,11 @@ public final class MCOpenVR implements ClientModInitializer {
 	}
 
 	public static void setVsyncToPhotons(float vsyncToPhotons) {
-		MCOpenVR.vsyncToPhotons = vsyncToPhotons;
+		McOpenVr.vsyncToPhotons = vsyncToPhotons;
 	}
 
 	static void setDetectedHardware(HardwareType detectedHardware) {
-		MCOpenVR.detectedHardware = detectedHardware;
+		McOpenVr.detectedHardware = detectedHardware;
 	}
 
 	public static boolean init() {
@@ -116,12 +116,12 @@ public final class MCOpenVR implements ClientModInitializer {
 
 		try {
 			initJOpenVR();
-			OpenVRCompositor.initOpenVRCompositor();
-			OpenVRSettings.initOpenVRSettings();
-			OpenVRRenderModels.initOpenVRRenderModels();
-			OpenVRChaperone.initOpenVRChaperone();
-			OpenVRApplications.initOpenVRApplications();
-			OpenVRInput.init();
+			OpenVrCompositor.initOpenVRCompositor();
+			OpenVrSettings.initOpenVRSettings();
+			OpenVrRenderModels.initOpenVRRenderModels();
+			OpenVrChaperone.initOpenVRChaperone();
+			OpenVrApplications.initOpenVRApplications();
+			OpenVrInput.init();
 			OpenComposite.init();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -130,14 +130,14 @@ public final class MCOpenVR implements ClientModInitializer {
 			return false;
 		}
 
-		if (OpenVRInput.instance == null) {
+		if (OpenVrInput.instance == null) {
 			LOGGER.warn("Controller input not available.");
 		}
 
 		LOGGER.info("OpenVR initialized & VR connected.");
 
-		OpenVRInput.controllers[OpenVRInput.RIGHT_CONTROLLER] = new TrackedController(ControllerType.RIGHT);
-		OpenVRInput.controllers[OpenVRInput.LEFT_CONTROLLER] = new TrackedController(ControllerType.LEFT);
+		OpenVrInput.controllers[OpenVrInput.RIGHT_CONTROLLER] = new TrackedController(ControllerType.RIGHT);
+		OpenVrInput.controllers[OpenVrInput.LEFT_CONTROLLER] = new TrackedController(ControllerType.LEFT);
 
 		deviceVelocity = new Vector3d[JOpenVRLibrary.k_unMaxTrackedDeviceCount];
 
@@ -146,7 +146,7 @@ public final class MCOpenVR implements ClientModInitializer {
 			deviceVelocity[i] = new Vector3d(0, 0, 0);
 		}
 
-		OpenVRInput.hapticScheduler = new HapticScheduler();
+		OpenVrInput.hapticScheduler = new HapticScheduler();
 
 		initialized = true;
 
@@ -214,9 +214,9 @@ public final class MCOpenVR implements ClientModInitializer {
 	public void onInitializeClient() {
 		if (initialized) {
 			LOGGER.info("Creating MCOpenVR instance.");
-			instance = new MCOpenVR();
+			instance = new McOpenVr();
 		}
-		AutoConfig.register(MCOpenVRConfig.class, JanksonConfigSerializer::new);
-		modConfig = AutoConfig.getConfigHolder(MCOpenVRConfig.class).getConfig();
+		AutoConfig.register(McOpenVrConfig.class, JanksonConfigSerializer::new);
+		modConfig = AutoConfig.getConfigHolder(McOpenVrConfig.class).getConfig();
 	}
 }

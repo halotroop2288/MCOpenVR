@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
  *
  * @author halotroop2288
  */
-public final class OpenVRChaperone {
+public final class OpenVrChaperone {
 	private static final Logger LOGGER = LogManager.getLogger("OpenVR Chaperone");
 	protected static VR_IVRChaperone_FnTable instance;
 
@@ -20,14 +20,14 @@ public final class OpenVRChaperone {
 
 	static void initOpenVRChaperone() {
 		instance = new VR_IVRChaperone_FnTable(JOpenVRLibrary
-				.VR_GetGenericInterface(JOpenVRLibrary.IVRChaperone_Version, MCOpenVR.hmdErrorStoreBuf));
-		if (!MCOpenVR.isError()) {
+				.VR_GetGenericInterface(JOpenVRLibrary.IVRChaperone_Version, McOpenVr.hmdErrorStoreBuf));
+		if (!McOpenVr.isError()) {
 			instance.setAutoSynch(false);
 			instance.read();
 			LOGGER.info("OpenVR chaperone initialized.");
 		} else {
 			LOGGER.error("VRChaperone init failed: " + JOpenVRLibrary
-					.VR_GetVRInitErrorAsEnglishDescription(MCOpenVR.getError()).getString(0));
+					.VR_GetVRInitErrorAsEnglishDescription(McOpenVr.getError()).getString(0));
 			instance = null;
 		}
 	}

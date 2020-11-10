@@ -24,14 +24,14 @@ public final class OpenComposite {
 
 	static void init() {
 		instance = new VR_IVROCSystem_FnTable(JOpenVRLibrary
-				.VR_GetGenericInterface(VR_IVROCSystem_FnTable.Version, MCOpenVR.hmdErrorStoreBuf));
-		if (!MCOpenVR.isError()) {
+				.VR_GetGenericInterface(VR_IVROCSystem_FnTable.Version, McOpenVr.hmdErrorStoreBuf));
+		if (!McOpenVr.isError()) {
 			instance.setAutoSynch(false);
 			instance.read();
 			LOGGER.info("OpenComposite initialized.");
 		} else {
 			LOGGER.error("OpenComposite not found: " + JOpenVRLibrary
-					.VR_GetVRInitErrorAsEnglishDescription(MCOpenVR.getError()).getString(0));
+					.VR_GetVRInitErrorAsEnglishDescription(McOpenVr.getError()).getString(0));
 			instance = null;
 		}
 	}

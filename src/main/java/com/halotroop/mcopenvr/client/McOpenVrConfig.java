@@ -14,7 +14,7 @@ import net.minecraft.util.math.MathHelper;
  * @author halotroop2288
  */
 @Config(name = "MCOpenVR")
-public class MCOpenVRConfig implements ConfigData {
+public class McOpenVrConfig implements ConfigData {
 	@ConfigEntry.Category("control")
 	@Comment("Disable controller input")
 	public boolean disableControllerInput = false;
@@ -22,12 +22,8 @@ public class MCOpenVRConfig implements ConfigData {
 	@Comment("Swap primary and secondary controllers")
 	public boolean reverseHands = false;
 
+	@ConfigEntry.BoundedDiscrete(min = 0, max = 2)
 	@ConfigEntry.Category("overrides")
 	@Comment("Force detection of hardware: 0 = off, 1 = Vive, 2 = Oculus")
 	public int forceHardwareDetection = 0;
-
-	@Override
-	public void validatePostLoad() {
-		forceHardwareDetection = MathHelper.clamp(forceHardwareDetection, 0, 2);
-	}
 }

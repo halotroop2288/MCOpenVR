@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
  *
  * @author halotroop2288
  */
-public final class OpenVRInput {
+public final class OpenVrInput {
 	static final int RIGHT_CONTROLLER = 0;
 	static final int LEFT_CONTROLLER = 1;
 	private static final Logger LOGGER = LogManager.getLogger("OpenVR Input");
@@ -32,21 +32,21 @@ public final class OpenVRInput {
 
 	static void init() {
 		instance = new VR_IVRInput_FnTable(JOpenVRLibrary.VR_GetGenericInterface(JOpenVRLibrary
-				.IVRInput_Version, MCOpenVR.hmdErrorStoreBuf));
-		if (!MCOpenVR.isError()) {
+				.IVRInput_Version, McOpenVr.hmdErrorStoreBuf));
+		if (!McOpenVr.isError()) {
 			instance.setAutoSynch(false);
 			instance.read();
 			LOGGER.info("OpenVR Input initialized OK");
 		} else {
 			LOGGER.error("VRInput init failed: " + JOpenVRLibrary
-					.VR_GetVRInitErrorAsEnglishDescription(MCOpenVR.getError()).getString(0));
+					.VR_GetVRInitErrorAsEnglishDescription(McOpenVr.getError()).getString(0));
 			instance = null;
 		}
 	}
 
 	public static void triggerHapticPulse(ControllerType controller, float durationSeconds, float frequency, float amplitude, float delaySeconds) {
-		if (MCOpenVR.modConfig.disableControllerInput || !inputInitialized) return;
-		if (MCOpenVR.modConfig.reverseHands) {
+		if (McOpenVr.modConfig.disableControllerInput || !inputInitialized) return;
+		if (McOpenVr.modConfig.reverseHands) {
 			if (controller == ControllerType.RIGHT) controller = ControllerType.LEFT;
 			else controller = ControllerType.RIGHT;
 		}

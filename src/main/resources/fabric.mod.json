@@ -26,7 +26,7 @@
 			"com.halotroop.mcopenvr.client.NativeLoaderEntrypoint"
 		],
 		"client": [
-			"com.halotroop.mcopenvr.client.provider.MCOpenVR"
+			"com.halotroop.mcopenvr.client.provider.McOpenVr"
 		],
 		"modmenu": [
 			"com.halotroop.mcopenvr.client.impl.ModMenuIntegration"

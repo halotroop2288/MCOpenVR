@@ -1,6 +1,6 @@
 package com.halotroop.mcopenvr.client;
 
-import com.halotroop.mcopenvr.client.provider.MCOpenVR;
+import com.halotroop.mcopenvr.client.provider.McOpenVr;
 import net.devtech.grossfabrichacks.entrypoints.PrePreLaunch;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -21,7 +21,7 @@ public final class NativeLoaderEntrypoint implements PrePreLaunch {
 	public void onPrePreLaunch() {
 		try {
 			Class.forName("jopenvr.JOpenVRLibrary");
-			if (MCOpenVR.init()) LOGGER.info("MCOpenVR initialized.");
+			if (McOpenVr.init()) LOGGER.info("MCOpenVR initialized.");
 			else LOGGER.error("MCOpenVR not successfully initialized.");
 		} catch (NoClassDefFoundError | ClassNotFoundException e) {
 			LOGGER.error("JOpenVR failed to load: " + e.getMessage());

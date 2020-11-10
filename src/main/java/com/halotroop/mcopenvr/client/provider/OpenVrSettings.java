@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
  *
  * @author halotroop2288
  */
-public final class OpenVRSettings {
+public final class OpenVrSettings {
 	private static final Logger LOGGER = LogManager.getLogger("OpenVR Settings");
 	protected static VR_IVRSettings_FnTable instance;
 
@@ -20,13 +20,13 @@ public final class OpenVRSettings {
 
 	static void initOpenVRSettings() {
 		instance = new VR_IVRSettings_FnTable(JOpenVRLibrary.VR_GetGenericInterface(JOpenVRLibrary.IVRSettings_Version,
-				MCOpenVR.hmdErrorStoreBuf));
-		if (!MCOpenVR.isError()) {
+				McOpenVr.hmdErrorStoreBuf));
+		if (!McOpenVr.isError()) {
 			instance.setAutoSynch(false);
 			instance.read();
-			MCOpenVR.LOGGER.info("OpenVR Settings initialized OK");
+			McOpenVr.LOGGER.info("OpenVR Settings initialized OK");
 		} else {
-			MCOpenVR.LOGGER.error("VRSettings init failed: " + JOpenVRLibrary.VR_GetVRInitErrorAsEnglishDescription(MCOpenVR.getError())
+			McOpenVr.LOGGER.error("VRSettings init failed: " + JOpenVRLibrary.VR_GetVRInitErrorAsEnglishDescription(McOpenVr.getError())
 					.getString(0));
 			instance = null;
 		}

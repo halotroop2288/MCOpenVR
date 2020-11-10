@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
  *
  * @author halotroop2288
  */
-public final class OpenVRRenderModels {
+public final class OpenVrRenderModels {
 	private static final Logger LOGGER = LogManager.getLogger("OpenVR Render Models");
 	protected static VR_IVRRenderModels_FnTable instance;
 
@@ -20,14 +20,14 @@ public final class OpenVRRenderModels {
 
 	static void initOpenVRRenderModels() {
 		instance = new VR_IVRRenderModels_FnTable(JOpenVRLibrary
-				.VR_GetGenericInterface(JOpenVRLibrary.IVRRenderModels_Version, MCOpenVR.hmdErrorStoreBuf));
-		if (!MCOpenVR.isError()) {
+				.VR_GetGenericInterface(JOpenVRLibrary.IVRRenderModels_Version, McOpenVr.hmdErrorStoreBuf));
+		if (!McOpenVr.isError()) {
 			instance.setAutoSynch(false);
 			instance.read();
 			LOGGER.info("OpenVR RenderModels initialized OK");
 		} else {
 			LOGGER.error("VRRenderModels init failed: " + JOpenVRLibrary
-					.VR_GetVRInitErrorAsEnglishDescription(MCOpenVR.getError()).getString(0));
+					.VR_GetVRInitErrorAsEnglishDescription(McOpenVr.getError()).getString(0));
 			instance = null;
 		}
 	}
