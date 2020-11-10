@@ -52,8 +52,8 @@ I will provide no support for this method.
 After cloning the repo, open it in your favourite IDE, generate runs,
 and add this to your VM arguments:
 
-```
--Djna.library.path=PATH\TO\MCOPENVR\WORKSPACE\openvr\bin\win64
+```jvm
+-Djna.library.path=<Path to MCOpenVR Workspace>/openvr/bin/<PLATFORM>
 ```
 
 # Licenses
