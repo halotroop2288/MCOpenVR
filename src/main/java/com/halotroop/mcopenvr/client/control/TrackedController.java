@@ -1,23 +1,34 @@
 package com.halotroop.mcopenvr.client.control;
 
-import com.halotroop.mcopenvr.client.provider.OpenVrInput;
+import com.halotroop.mcopenvr.client.provider.McOpenVr;
 
 public class TrackedController {
-	protected final ControllerType type;
+	protected final Controller type;
 
-	public TrackedController(ControllerType type) {
+	public TrackedController(Controller type) {
 		this.type = type;
 	}
 
-	public ControllerType getType() {
+	@Deprecated
+	public int getDeviceIndex() {
+		return Controller.values()[type.ordinal()].getDeviceIndex();
+	}
+
+	public Controller getType() {
 		return type;
 	}
 
+	@Deprecated
 	public boolean isTracking() {
-		return OpenVrInput.isControllerTracking(type);
+		return Controller.values()[type.ordinal()].isTracking();
 	}
 
 	public void triggerHapticPulse(float durationSeconds, float frequency, float amplitude) {
-		OpenVrInput.triggerHapticPulse(this.type, durationSeconds, frequency, amplitude);
+		McOpenVr.triggerHapticPulse(this.type, durationSeconds, frequency, amplitude);
+	}
+
+	@Deprecated
+	public void triggerHapticPulse(int duration) {
+		McOpenVr.triggerHapticPulse(this.type, duration);
 	}
 }

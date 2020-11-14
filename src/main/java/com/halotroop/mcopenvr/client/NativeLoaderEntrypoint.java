@@ -20,8 +20,8 @@ public final class NativeLoaderEntrypoint implements PrePreLaunch {
 	@Override
 	public void onPrePreLaunch() {
 		try {
-			Class.forName("jopenvr.JOpenVRLibrary");
-			if (McOpenVr.init()) LOGGER.info("MCOpenVR initialized.");
+			Class.forName("org.lwjgl.openvr.VR");
+			if (McOpenVr.initialize()) LOGGER.info("MCOpenVR initialized.");
 			else LOGGER.error("MCOpenVR not successfully initialized.");
 		} catch (NoClassDefFoundError | ClassNotFoundException e) {
 			LOGGER.error("JOpenVR failed to load: " + e.getMessage());

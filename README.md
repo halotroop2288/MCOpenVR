@@ -1,60 +1,13 @@
 # MCOpenVR
 A helper library for implementing Steam's OpenVR API in Minecraft.
 
+This experimental branch starts from scratch instead of trying to
+follow the groundwork of Vivecraft.
+
 ![Minecraft Version](https://img.shields.io/badge/Minecraft-1.16.4-green)
 
 ## Usage
-Use JITPack to get the latest version of this with Gradle.
-
-If no version is available, use the latest commit hash in place of `<version>`.
-
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/halotroop2288/MCOpenVR?sort=semver)
-
-```groovy
-repositories {
-	maven {
-		name "HalfOf2" // Needed for GrossFabricHacks (native entrypoint)
-		url "https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/"
-	}
-    maven {
-        name = "JITPack"
-        url = "https://jitpack.io"
-    }
-}
-
-dependencies {
-    include(modApi("com.github.halotroop2288:MCOpenVR:<version>"))
-}
-```
-
-### Last Resort
-If that doesn't work, clone the repo and publish it to maven local.<br/>
-Information about that can be found below.
-
-If you do it this way, you need to change your Gradle config to load
-the dependency from `com.halotroop` instead of `com.github.halotroop2288`
-and use the correct versioning
-(`<mod version>+openVR<OpenVR version>-<MC version>`)
-
-```
-dependencies {
-    include(modApi("com.halotroop:MCOpenVR:<version>"))
-}
-```
-
-## Cloning this repo
-Clone this repository recursively to download the included version of OpenVR.
-It may take quite some time to download, please be patient. The library is required.
-
-Alternatively, you could download the DLLs and place them in the correct places, but
-I will provide no support for this method.
-
-After cloning the repo, open it in your favourite IDE, generate runs,
-and add this to your VM arguments:
-
-```jvm
--Djna.library.path=<Path to MCOpenVR Workspace>/openvr/bin/<PLATFORM>
-```
+This is an experimental branch. See the trunk for instructions on proper use.
 
 # Licenses
 ### Mod

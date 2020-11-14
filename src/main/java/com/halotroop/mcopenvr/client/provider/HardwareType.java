@@ -32,8 +32,4 @@ public enum HardwareType {
 		this.hasStick = hasStick;
 		this.manufacturers = ImmutableList.copyOf(manufacturers);
 	}
-
-	public static HardwareType fromManufacturer(String name) {
-		return map.getOrDefault(name, VIVE);
-	}
 }
