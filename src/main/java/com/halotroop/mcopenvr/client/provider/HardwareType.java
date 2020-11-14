@@ -9,7 +9,8 @@ import java.util.Map;
 public enum HardwareType {
 	VIVE(true, false, "HTC"),
 	OCULUS(false, true, "Oculus"),
-	WINDOWSMR(true, true, "WindowsMR");
+	WINDOWS_MR(true, true, "WindowsMR"),
+	NULL(false, false, "null");
 
 	private static final Map<String, HardwareType> map = new HashMap<>();
 

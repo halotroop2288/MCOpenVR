@@ -196,7 +196,7 @@ public final class McOpenVr implements ClientModInitializer {
 	}
 
 	public static HardwareType getHardwareType() {
-		return modConfig.forceHardwareDetection > 0 ? HardwareType.values()[modConfig.forceHardwareDetection - 1] : detectedHardware;
+		return modConfig.forcedHardwareDetection.ordinal() > 0 ? modConfig.forcedHardwareDetection : detectedHardware;
 	}
 
 	static int getError() {

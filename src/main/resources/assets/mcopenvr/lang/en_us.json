@@ -6,7 +6,6 @@
 	"text.autoconfig.MCOpenVR.option.controlSettings.worldScale": "World Scale",
 	"text.autoconfig.MCOpenVR.option.controlSettings.worldRotation": "World Rotation",
 	"text.autoconfig.MCOpenVR.option.controlSettings.worldRotationCached": "This Shouldn't Appear",
-	"text.autoconfig.MCOpenVR.option.controlSettings.worldRotationIncrement": "This Shouldn't Appear",
 	"text.autoconfig.MCOpenVR.option.controlSettings.xSensitivity": "X-Axis Sensitivity",
 	"text.autoconfig.MCOpenVR.option.forceHardwareDetection": "Force Hardware Detection",
 	"text.autoconfig.MCOpenVR.category.default": "This Shouldn't Appear",

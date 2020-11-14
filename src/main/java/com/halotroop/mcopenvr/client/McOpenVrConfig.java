@@ -40,8 +40,4 @@ public class McOpenVrConfig implements ConfigData {
 		public float worldRotationCached;
 		public boolean firstRun = true;
 	}
-
-	public enum ForcedHardware {
-		OFF, VIVE, OCULUS
-	}
 }
